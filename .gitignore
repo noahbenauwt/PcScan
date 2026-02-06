@@ -1,0 +1,16 @@
+# Environnement virtuel 
+.venv/
+venv/
+
+# Fichiers Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Fichiers Mac
+.DS_Store
+
+# Variables d'environnement 
+.env 
