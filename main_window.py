@@ -1,8 +1,10 @@
 # Ici on créé la fenêtre principale de l'application
-# Api utilisé : https://customtkinter.tomschimansky.com/
+# DOC utilisé : https://customtkinter.tomschimansky.com/
 
 import customtkinter as ctk
 from PIL import Image
+
+from system_info import SystemInfo
 
 
 class PcScan:
@@ -11,8 +13,8 @@ class PcScan:
         self.root = ctk.CTk()
 
         # Configuration de cette fenêtre principale
-        self.root.geometry("750x550")
-        self.root.title("PcScan".center(172))
+        self.root.geometry("700x500")
+        self.root.title("PcScan".center(158))
         self.root.resizable(False, False)
         self.root.config(bg="#FAF7F7")
 
@@ -34,22 +36,28 @@ class PcScan:
         main_frame.pack(padx=10, pady=25)
 
         # On mets en place les 5 lignes qui affichent le nom du composant(ex: CPU, GPU, RAM...)
-        self.row_components_name(main_frame, "CPU", "assets/cpu.png", y=5)
-        self.row_components_name(main_frame, "GPU", "assets/gpu.png", y=80)
-        self.row_components_name(main_frame, "RAM", "assets/ram.png", y=155)
-        self.row_components_name(main_frame, "Stockage", "assets/stockage.png", y=230)
-        self.row_components_name(main_frame, "OS", "assets/os.png", y=305)
-
+        name = ["CPU", "GPU", "RAM", "Stockage", "OS"]
+        y_place = [5, 80, 155, 230, 305]
+        for components_name, coord in zip(name, y_place):
+            self.row_components_name(
+                main_frame, components_name, f"assets/{components_name.lower()}.png", coord
+            )
+        
         # Ici les 5 lignes qui affichent le composant présent dans le système de l'utilisateur
-        self.row_user_components(main_frame, "Intel Core i7-9750H", y=5)
-        self.row_user_components(main_frame, "NVIDIA GeForce GTX 1650", y=80)
-        self.row_user_components(main_frame, "16 GB", y=155)
-        self.row_user_components(main_frame, "SSD 512 GB", y=230)
-        self.row_user_components(main_frame, "macOS Sonoma 14.4.1.1", y=305)
+        info = SystemInfo().data
+        user_components = [
+            info["cpu"],
+            info["gpu"],
+            info["ram"],
+            info["stockage"],
+            info["os"],
+        ]
+        for components, coord in zip(user_components, y_place):
+            self.row_user_components(main_frame, f"{components}", coord)
 
         # Mettre la petite séparation entre chaque ligne pour le visuel
-        y_liste = [78, 152, 227, 302]
-        for y in y_liste:
+        y_list = [78, 152, 227, 302]
+        for y in y_list:
             self.separation_line(main_frame, y)
 
         # Créer le bouton "générer le rapport PDF"
@@ -67,9 +75,21 @@ class PcScan:
             text="Générer le rapport PDF",
             font=("Helvetica Neue", 19, "bold"),
             hover=True,
-            hover_color="#1a7bf2",
+            hover_color="#1a58a3",
         )
         button_pdf.pack(padx=0, pady=0)
+
+        # texte de signature
+        text = ctk.CTkLabel(
+            self.root,
+            width=300,
+            height=23,
+            text_color="#929292",
+            fg_color="#FAF7F7",
+            text="par Benauwt Noah",
+            font=("Helvetica Neue", 10, "italic"),
+        )
+        text.place(x=200, y=480)
 
     def row_components_name(self, parent, name, path_image, y):
 
