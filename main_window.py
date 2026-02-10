@@ -1,11 +1,16 @@
 # Ici on créé la fenêtre principale de l'application
 # DOC utilisé : https://customtkinter.tomschimansky.com/
 
+import platform
+import subprocess
+from pathlib import Path
+
 import customtkinter as ctk
 from PIL import Image
 
 from pdf_generator import PcScan_PDF
 from system_info import SystemInfo
+
 
 class PcScan:
     def __init__(self):
@@ -14,7 +19,9 @@ class PcScan:
 
         # Configuration de cette fenêtre principale
         self.root.geometry("700x500")
-        self.root.title("PcScan".center(158))
+        self.root.title(
+            f"PcScan | Ordinateur : {SystemInfo().data["name"]}".center(125)
+        )
         self.root.resizable(False, False)
         self.root.config(bg="#FAF7F7")
 
@@ -86,7 +93,25 @@ class PcScan:
     # Ici on créer le pdf quand l'utilisateur clique sur le bouton
     def generate_pdf(self):
         pdf = PcScan_PDF()
-        pdf.output("PcScan_Report.pdf")
+
+        # Chemin vers le bureau de l'utilisateur
+        desktop = Path.home() / "Desktop"
+        pdf_path = desktop / "PcScan_Report.pdf"
+
+        # On génère le PDF sur le bureau
+        pdf.output(str(pdf_path))
+
+        # Puis on l'ouvre directement
+        def open_pdf(path):
+            if platform.system() == "Windows":
+                subprocess.run(["cmd", "/c", "start", "", str(path)], shell=True)
+            elif platform.system() == "Darwin":
+                subprocess.run(["open", path])
+            else:  # Linux
+                subprocess.run(["xdg-open", path])
+
+        # Puis on ouvre le PDF
+        open_pdf(pdf_path)
 
     def row_components_name(self, parent, name, path_image, y):
 

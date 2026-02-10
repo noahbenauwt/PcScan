@@ -19,6 +19,7 @@ class SystemInfo:
         self.data["ram"] = self.get_ram_info()
         self.data["stockage"] = self.get_stockage_info()
         self.data["os"] = self.get_os_info()
+        self.data["name"] = self.get_name_info()
 
     # Récupérer le CPU de l'utilisateur
     def get_cpu_info(self):
@@ -92,7 +93,7 @@ class SystemInfo:
             return linux_ram.split(":")[1].strip()
 
         return "RAM non détecté"
-    
+
     # Récupérer les informations sur le disque de l'utilisateur
     def get_stockage_info(self):
         # Récupérer la taille du disque/ssd du octets
@@ -186,3 +187,20 @@ class SystemInfo:
             linux = subprocess.check_output(command_linux, shell=True).decode()
             return linux.split("=")[1].strip().strip('"')
         return "OS non détecté"
+
+    def get_name_info(self):
+        # Récupérer le nom de l'Ordi de la personne
+        if platform.system() == "Windows":
+            command_windows = "echo %COMPUTERNAME%"
+            windows = subprocess.check_output(command_windows, shell=True).decode()
+            return windows.strip()
+
+        elif platform.system() == "Darwin":
+            command_mac = "scutil --get ComputerName"
+            mac = subprocess.check_output(command_mac, shell=True).decode()
+            return mac.strip()
+        elif platform.system() == "Linux":
+            command_linux = "hostname"
+            linux = subprocess.check_output(command_linux, shell=True)
+            return linux.strip()
+        return "Nom non détecté"

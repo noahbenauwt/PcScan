@@ -33,7 +33,13 @@ class PcScan_PDF(FPDF):
         self.set_font("Helvetica", "", size=17)
         self.set_y(23)
         self.set_text_color(163, 163, 163)
-        self.cell(0, 20, "Rapport Système", align="C", new_y="NEXT")
+        self.cell(
+            0,
+            20,
+            f"Rapport Système : {SystemInfo().data["name"]}",
+            align="C",
+            new_y="NEXT",
+        )
 
         # Ligne de séparation
         line_w = 126
