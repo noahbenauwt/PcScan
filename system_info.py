@@ -114,7 +114,7 @@ class SystemInfo:
                 disk = "SSD"
             else:
                 disk = "HDD"
-            return f"{disk} - {GB:.0f} GB"  # afficher les GB(Ex: 931 GB)
+            return f"{disk} - {GB:.0f} GB (total)"  # afficher les GB(Ex: 931 GB)
 
         # Récupérer pour les macOS
         elif platform.system() == "Darwin":
@@ -134,7 +134,7 @@ class SystemInfo:
             else:
                 disk = "Type inconnu"
 
-            return f"{disk} - {storage}"
+            return f"{disk} - {storage} (total)"
 
         # Récupérer pour Linux
         elif platform.system() == "Linux":
@@ -155,7 +155,7 @@ class SystemInfo:
             else:
                 disk = "Type inconnu"
 
-            return f"{disk} - {linux}"
+            return f"{disk} - {linux} (total)"
         return "disque/SSD non détecté"
 
     # Récupérer l'OS de l'utilisateur

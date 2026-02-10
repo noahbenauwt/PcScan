@@ -11,6 +11,3 @@ __pycache__/
 
 # Fichiers Mac
 .DS_Store
-
-# Variables d'environnement 
-.env 

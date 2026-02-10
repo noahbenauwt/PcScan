@@ -4,6 +4,7 @@
 import customtkinter as ctk
 from PIL import Image
 
+from pdf_generator import PcScan_PDF
 from system_info import SystemInfo
 
 
@@ -40,9 +41,12 @@ class PcScan:
         y_place = [5, 80, 155, 230, 305]
         for components_name, coord in zip(name, y_place):
             self.row_components_name(
-                main_frame, components_name, f"assets/{components_name.lower()}.png", coord
+                main_frame,
+                components_name,
+                f"assets/{components_name.lower()}.png",
+                coord,
             )
-        
+
         # Ici les 5 lignes qui affichent le composant présent dans le système de l'utilisateur
         info = SystemInfo().data
         user_components = [
@@ -76,20 +80,14 @@ class PcScan:
             font=("Helvetica Neue", 19, "bold"),
             hover=True,
             hover_color="#1a58a3",
+            command=self.generate_pdf,
         )
         button_pdf.pack(padx=0, pady=0)
 
-        # texte de signature
-        text = ctk.CTkLabel(
-            self.root,
-            width=300,
-            height=23,
-            text_color="#929292",
-            fg_color="#FAF7F7",
-            text="par Benauwt Noah",
-            font=("Helvetica Neue", 10, "italic"),
-        )
-        text.place(x=200, y=480)
+    # Ici on créer le pdf quand l'utilisateur clique sur le bouton
+    def generate_pdf(self):
+        pdf = PcScan_PDF()
+        pdf.output("PcScan_Report.pdf")
 
     def row_components_name(self, parent, name, path_image, y):
 
