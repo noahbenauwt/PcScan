@@ -1,10 +1,11 @@
 # Ici on créé la fenêtre principale de l'application
 # DOC utilisé : https://customtkinter.tomschimansky.com/
 
+from assets_import import resource_path
+
 import platform
 import subprocess
 from pathlib import Path
-
 import customtkinter as ctk
 from PIL import Image
 
@@ -115,7 +116,8 @@ class PcScan:
 
     def row_components_name(self, parent, name, path_image, y):
 
-        image = ctk.CTkImage(light_image=Image.open(path_image), size=(70, 70))
+        # Modifie cette ligne dans main_window.py
+        image = ctk.CTkImage(light_image=Image.open(resource_path(path_image)), size=(70, 70))
 
         # Création de la ligne qui affiche le nom du composant
         name_row = ctk.CTkLabel(

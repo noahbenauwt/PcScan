@@ -2,7 +2,7 @@
 # Doc utilisé : https://py-pdf.github.io/fpdf2/
 
 from fpdf import FPDF
-
+from assets_import import resource_path
 from system_info import SystemInfo
 
 
@@ -95,7 +95,7 @@ class PcScan_PDF(FPDF):
         images_list = ["cpu", "gpu", "ram", "stockage", "os"]
 
         for y_img, imgs in zip(y_name_list, images_list):
-            self.image(f"assets/{imgs}.png", 10, y_img - 2, 19, 19)
+            self.image(resource_path(f"assets/{imgs}.png"), 10, y_img - 2, 19, 19)
 
     def infos(self):
         # Texte "scan automatique"

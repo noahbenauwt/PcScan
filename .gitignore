@@ -11,3 +11,9 @@ __pycache__/
 
 # Fichiers Mac
 .DS_Store
+
+# Fichier de la compilation PyInstaller.py
+PcScan.spec
+icon.icns
+dist/
+build/
