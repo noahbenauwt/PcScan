@@ -7,7 +7,6 @@ from PIL import Image
 from pdf_generator import PcScan_PDF
 from system_info import SystemInfo
 
-
 class PcScan:
     def __init__(self):
         # Création de la fenêtre principale
