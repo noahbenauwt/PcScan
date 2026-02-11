@@ -20,8 +20,9 @@ class PcScan:
 
         # Configuration de cette fenêtre principale
         self.root.geometry("700x500")
+        center = int(250 / 2)
         self.root.title(
-            f"PcScan | Ordinateur : {SystemInfo().data["name"]}".center(125)
+            f"PcScan | Ordinateur : {SystemInfo().data["name"]}".center(center)
         )
         self.root.resizable(False, False)
         self.root.config(bg="#FAF7F7")
@@ -125,7 +126,7 @@ class PcScan:
             text=(f"{name}"),
             text_color="#6C6C6C",
             font=("Helvetica Neue", 23, "bold"),
-            width=275,
+            width=20,
             height=70,
             fg_color="white",
             anchor="w",
@@ -139,7 +140,7 @@ class PcScan:
 
     def row_user_components(self, parent, name, y):
 
-        frame_test = ctk.CTkLabel(
+        user_components = ctk.CTkLabel(
             parent,
             text=name,
             text_color="#6C6C6C",
@@ -150,7 +151,7 @@ class PcScan:
             anchor="e",
             justify="center",
         )
-        frame_test.place(x=280, y=y)
+        user_components.place(x=280, y=y)
 
     def separation_line(self, parent, y):
         line = ctk.CTkFrame(

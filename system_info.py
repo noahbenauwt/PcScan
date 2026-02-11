@@ -30,18 +30,18 @@ class SystemInfo:
             # Le logiciel éxécute la commande et renvoie, Name\n <Nom du CPU>
             cpu_windows = subprocess.check_output(command_windows, shell=True).decode()
             # On retire donc le "Name" pour garder seulement le CPU
-            return cpu_windows.split("\n")[1].strip()
+            return cpu_windows.split("\n")[1].split("with")[0].split("@")[0].replace("(R)", "").replace("(TM)", "").strip()
 
         elif platform.system() == "Darwin":
             # La commande sur Mac renvoie directement le nom du CPU
             command_mac = "sysctl -n machdep.cpu.brand_string"
-            return subprocess.check_output(command_mac, shell=True).decode().strip()
+            return subprocess.check_output(command_mac, shell=True).decode().strip().split("with")[0]
 
         elif platform.system() == "Linux":
             # Linux sous forme, model name : <Nom du CPU>
             command_linux = 'cat /proc/cpuinfo | grep "model name" | head -n 1'
             cpu_linux = subprocess.check_output(command_linux, shell=True).decode()
-            return cpu_linux.split(":")[1].strip()  # On retire le "model name :"
+            return cpu_linux.split(":")[1].split("with")[0].split("@")[0].replace("(R)", "").replace("(TM)", "").strip()  # On retire le "model name :"
 
         return "CPU non détecté"
 
@@ -193,7 +193,7 @@ class SystemInfo:
         if platform.system() == "Windows":
             command_windows = "echo %COMPUTERNAME%"
             windows = subprocess.check_output(command_windows, shell=True).decode()
-            return windows.strip()
+            return windows.replace("Windows", "Win").strip()
 
         elif platform.system() == "Darwin":
             command_mac = "scutil --get ComputerName"
