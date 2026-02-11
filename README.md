@@ -25,8 +25,8 @@
 ## 📸 Aperçu
 
 <div align="center">
-  <img src="screenshots/interface.png" width="590" alt="Interface principale">
-  <img src="screenshots/rapport-pdf.png" width="320" alt="Rapport PDF">
+  <img src="screenshots/interface.png" width="400" alt="Interface principale">
+  <img src="screenshots/rapport-pdf.png" width="400" alt="Rapport PDF">
   <br>
   <p><i>Interface principale • Rapport PDF généré</i></p>
 </div>
