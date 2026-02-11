@@ -8,7 +8,7 @@ import subprocess
 from pathlib import Path
 import customtkinter as ctk
 from PIL import Image
-
+import multiprocessing
 from pdf_generator import PcScan_PDF
 from system_info import SystemInfo
 
@@ -165,5 +165,7 @@ class PcScan:
 
 # Lancement de la classe
 if __name__ == "__main__":
+    # Empêche l'app de se lancer plusieurs fois lors de la compilation :
+    multiprocessing.freeze_support()
     app = PcScan()
     app.run()

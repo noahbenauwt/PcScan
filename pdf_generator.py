@@ -103,14 +103,14 @@ class PcScan_PDF(FPDF):
         self.set_xy(25, 155)
         self.set_text_color(180, 180, 180)
         self.write(14, "Scan automatique")
-        self.image("assets/ok.png", 13.5, 157, 15, 9)
+        self.image(resource_path("assets/ok.png"), 13.5, 157, 15, 9)
 
         # Texte "Données système réelles"
         self.set_font("Helvetica", "", size=13)
         self.set_xy(80, 155)
         self.set_text_color(180, 180, 180)
         self.write(14, "Données système réelles")
-        self.image("assets/ok.png", 68.5, 157, 15, 9)
+        self.image(resource_path("assets/ok.png"), 68.5, 157, 15, 9)
 
         # Petite ligne de séparation vers le footer
         line_w = 126
