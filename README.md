@@ -9,6 +9,10 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%20|%20macOS%20|%20Linux-lightgrey?style=for-the-badge)]()
 
 <img src="assets/cpu.png" width="100" alt="PcScan Logo">
+<img src="assets/gpu.png" width="100" alt="PcScan Logo">
+<img src="assets/ram.png" width="100" alt="PcScan Logo">
+<img src="assets/stockage.png" width="100" alt="PcScan Logo">
+<img src="assets/os.png" width="100" alt="PcScan Logo">
 
 **Un outil simple et élégant pour scanner automatiquement votre configuration matérielle et générer un rapport PDF professionnel.**
 
