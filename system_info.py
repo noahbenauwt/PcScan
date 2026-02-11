@@ -165,7 +165,7 @@ class SystemInfo:
         if platform.system() == "Windows":
             command_windows = "wmic os get Caption"
             windows = subprocess.check_output(command_windows, shell=True).decode()
-            return windows.split("\n")[1].strip()
+            return windows.split("\n")[1].replace("Windows", "Win").replace("Microsoft", "").strip()
 
         # Version de MacOS
         elif platform.system() == "Darwin":
@@ -193,7 +193,7 @@ class SystemInfo:
         if platform.system() == "Windows":
             command_windows = "echo %COMPUTERNAME%"
             windows = subprocess.check_output(command_windows, shell=True).decode()
-            return windows.replace("Windows", "Win").strip()
+            return windows.strip()
 
         elif platform.system() == "Darwin":
             command_mac = "scutil --get ComputerName"
