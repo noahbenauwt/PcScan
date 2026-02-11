@@ -1,9 +1,14 @@
+altgraph==0.17.5
 charset-normalizer==3.4.4
 customtkinter==5.2.2
 darkdetect==0.8.0
 defusedxml==0.7.1
 fonttools==4.61.1
 fpdf2==2.8.5
+macholib==1.16.4
 packaging==26.0
 pillow==12.1.0
+pyinstaller==6.18.0
+pyinstaller-hooks-contrib==2026.0
 reportlab==4.4.9
+setuptools==82.0.0
